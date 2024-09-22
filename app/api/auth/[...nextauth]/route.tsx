@@ -5,7 +5,7 @@ import * as https from "https";
 
 
 const authOptions: any = {
-  secret: process.env.JWT_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -17,7 +17,7 @@ const authOptions: any = {
       authorize: async (credentials: any) => {
         const { email, password } = credentials;
 
-        console.log('myemail',email, 'passsword', password)
+        console.log("myemail", email, "passsword", password);
 
         const data = {
           email: email,
@@ -54,11 +54,9 @@ const authOptions: any = {
   ],
 
   pages: {
-  signIn: "/login",
-  error: "/auth/error", 
-}
-,
-
+    signIn: "/login",
+    error: "/auth/error",
+  },
   callbacks: {
     async jwt({ token, user }: { token: any; user: any }) {
       if (user) {
